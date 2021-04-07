@@ -13,6 +13,7 @@ function isnumber(str) {  return str.length === 1 && str.match(/[0-9]/i);};
 function isperiod(str) {  return str.length === 1 && str.match(/\./i);};
 
 function padWithZeroes(n, width) { while(n.length<width) n = '0' + n; return n;} ;
+function padWithZeroesRight(n, width) { while(n.length<width) n = n + '0'; return n;} ;
     
 var position_counter = 0;
 var lc_class = "";
@@ -64,7 +65,7 @@ if (isperiod(callnum.substring(position_counter,position_counter+1)) && isnumber
   else if (isnumber(callnum.substring(position_counter+2,position_counter+3)) && isnumber(callnum.substring(position_counter+1,position_counter+2))) { subject_decimal_end = position_counter+3 }
   else if (isnumber(callnum.substring(position_counter+1,position_counter+2))) { subject_decimal_end = position_counter+2 }
   else {subject_decimal_end = position_counter+1 };
-  subject_val += padWithZeroes(callnum.substring(subject_decimal_start,subject_decimal_end),4);
+  subject_val += padWithZeroesRight(callnum.substring(subject_decimal_start,subject_decimal_end),4);
   position_counter = subject_decimal_end;
 }
 else if (isperiod(callnum.substring(position_counter,position_counter+1)) && !isnumber(callnum.substring(position_counter+1,position_counter+2))) { position_counter++; subject_val += ".0"};
@@ -86,7 +87,7 @@ if (isLetter(callnum.substring(position_counter,position_counter+1))) {
   else if (isnumber(callnum.substring(position_counter+2,position_counter+3)) && isnumber(callnum.substring(position_counter+1,position_counter+2))) { cutterend = position_counter+3; }
 else if (isnumber(callnum.substring(position_counter+1,position_counter+2)) && isnumber(callnum.substring(position_counter,position_counter+1)) ) { cutterend = position_counter+2 }
 else {cutterend = cutterstart+1 };
-  cutter1 += padWithZeroes(callnum.substring(cutterstart,cutterend),4);
+  cutter1 += padWithZeroesRight(callnum.substring(cutterstart,cutterend),4);
   position_counter = cutterend;
 }; // end of looking for first cutter
 
@@ -108,7 +109,7 @@ if (isLetter(callnum.substring(position_counter,position_counter+1))) {
   else if (isnumber(callnum.substring(position_counter+2,position_counter+3)) && isnumber(callnum.substring(position_counter+1,position_counter+2))) { cutter2end = position_counter+3; }
 else if (isnumber(callnum.substring(position_counter+1,position_counter+2)) && isnumber(callnum.substring(position_counter,position_counter+1)) ) { cutter2end = position_counter+2 }
 else {cutter2end = cutter2start+1 };
-  cutter2 += padWithZeroes(callnum.substring(cutter2start,cutter2end),4);
+  cutter2 += padWithZeroesRight(callnum.substring(cutter2start,cutter2end),4);
   position_counter = cutter2end;
 }; // end of looking for  cutter2
   
